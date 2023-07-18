@@ -3,6 +3,7 @@
     public class Range
     {
         public double From { get; set; }
+
         public double To { get; set; }
 
         public Range(double from, double to)
@@ -23,7 +24,97 @@
 
         public void Print()
         {
-            Console.WriteLine("Первое число диапазона: {0} Последнее число диапазона: {1}", From, To);
+            Console.WriteLine("({0};{1})", From, To);
+        }
+
+        public Range GetIntersection(Range interval2)
+        {
+            double interval2From = interval2.From;
+            double interval2To = interval2.To;
+
+            if (From >= interval2From && To <= interval2To)
+            {
+                return new Range(From, To);
+            }
+
+            if (From < interval2From && To > interval2To)
+            {
+                return new Range(interval2From, interval2To);
+            }
+
+            if (From < interval2From && To < interval2To && To > interval2From)
+            {
+                return new Range(interval2From, To);
+            }
+
+            if (interval2From < From && interval2To < To && interval2To > From)
+            {
+                return new Range(From, interval2To);
+            }
+
+            return null;
+        }
+
+        public Range[] GetUnion(Range interval2)
+        {
+            double interval2From = interval2.From;
+            double interval2To = interval2.To;
+
+            if (interval2From <= From && interval2To >= To)
+            {
+                Range[] rangesArray1 = new Range[1];
+                rangesArray1[0] = new Range(From, To);
+                return rangesArray1;
+            }
+
+            if (From < interval2From && To > interval2To)
+            {
+                Range[] rangesArray2 = new Range[1];
+                rangesArray2[0] = new Range(interval2From, interval2To);
+                return rangesArray2;
+            }
+
+            if (From <= interval2From && To <= interval2To)
+            {
+                Range[] rangesArray3 = new Range[1];
+                rangesArray3[0] = new Range(interval2From, To);
+                return rangesArray3;
+            }
+
+            if (interval2From <= From && interval2To <= To)
+            {
+                Range[] rangesArray4 = new Range[1];
+                rangesArray4[0] = new Range(From, interval2To);
+                return rangesArray4;
+            }
+
+            Range[] rangesArray5 = new Range[2];
+            rangesArray5[0] = new Range(From, To);
+            rangesArray5[1] = new Range(interval2From, interval2To);
+            return rangesArray5;
+        }
+
+        public Range[] GetDifference(Range interval2)
+        {
+            double interval2From = interval2.From;
+            double interval2To = interval2.To;
+
+            if (From < interval2From && To < interval2To && To > interval2From)
+            {
+                Range[] rangesArray1 = new Range[1];
+                rangesArray1[0] = new Range(From, interval2From);
+                return rangesArray1;
+            }
+
+            if (From < interval2From && To > interval2To)
+            {
+                Range[] rangesArray2 = new Range[2];
+                rangesArray2[0] = new Range(From, interval2From);
+                rangesArray2[1] = new Range(interval2To, To);
+                return rangesArray2;
+            }
+
+            return null;
         }
     }
 }

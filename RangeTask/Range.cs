@@ -32,14 +32,14 @@
             double interval2From = interval2.From;
             double interval2To = interval2.To;
 
-            if (From >= interval2From && To <= interval2To)
-            {
-                return new Range(From, To);
-            }
-
-            if (From < interval2From && To > interval2To)
+            if (From <= interval2From && To >= interval2To)
             {
                 return new Range(interval2From, interval2To);
+            }
+
+            if (From > interval2From && To < interval2To)
+            {
+                return new Range(From, To);
             }
 
             if (From < interval2From && To < interval2To && To > interval2From)
@@ -60,38 +60,38 @@
             double interval2From = interval2.From;
             double interval2To = interval2.To;
 
-            if (interval2From <= From && interval2To >= To)
+            if (From <= interval2From && To >= interval2To)
             {
-                Range[] rangesArray1 = new Range[1];
-                rangesArray1[0] = new Range(From, To);
-                return rangesArray1;
+                Range[] rangesArray = new Range[1];
+                rangesArray[0] = new Range(From, To);
+                return rangesArray;
             }
 
-            if (From < interval2From && To > interval2To)
+            if (From > interval2From && To < interval2To)
             {
-                Range[] rangesArray2 = new Range[1];
-                rangesArray2[0] = new Range(interval2From, interval2To);
-                return rangesArray2;
+                Range[] rangesArray = new Range[1];
+                rangesArray[0] = new Range(interval2From, interval2To);
+                return rangesArray;
             }
 
-            if (From <= interval2From && To <= interval2To)
+            if (From < interval2From && To < interval2To && To >= interval2From)
             {
-                Range[] rangesArray3 = new Range[1];
-                rangesArray3[0] = new Range(interval2From, To);
-                return rangesArray3;
+                Range[] rangesArray = new Range[1];
+                rangesArray[0] = new Range(From, interval2To);
+                return rangesArray;
             }
 
-            if (interval2From <= From && interval2To <= To)
+            if (interval2From < From && interval2To < To && interval2To >= From)
             {
-                Range[] rangesArray4 = new Range[1];
-                rangesArray4[0] = new Range(From, interval2To);
-                return rangesArray4;
+                Range[] rangesArray = new Range[1];
+                rangesArray[0] = new Range(interval2From, To);
+                return rangesArray;
             }
 
-            Range[] rangesArray5 = new Range[2];
-            rangesArray5[0] = new Range(From, To);
-            rangesArray5[1] = new Range(interval2From, interval2To);
-            return rangesArray5;
+            Range[] rangesArray2 = new Range[2];
+            rangesArray2[0] = new Range(From, To);
+            rangesArray2[1] = new Range(interval2From, interval2To);
+            return rangesArray2;
         }
 
         public Range[] GetDifference(Range interval2)
@@ -101,17 +101,17 @@
 
             if (From < interval2From && To < interval2To && To > interval2From)
             {
-                Range[] rangesArray1 = new Range[1];
-                rangesArray1[0] = new Range(From, interval2From);
-                return rangesArray1;
+                Range[] rangesArray = new Range[1];
+                rangesArray[0] = new Range(From, interval2From);
+                return rangesArray;
             }
 
             if (From < interval2From && To > interval2To)
             {
-                Range[] rangesArray2 = new Range[2];
-                rangesArray2[0] = new Range(From, interval2From);
-                rangesArray2[1] = new Range(interval2To, To);
-                return rangesArray2;
+                Range[] rangesArray = new Range[2];
+                rangesArray[0] = new Range(From, interval2From);
+                rangesArray[1] = new Range(interval2To, To);
+                return rangesArray;
             }
 
             return null;

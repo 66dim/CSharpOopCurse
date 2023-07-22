@@ -19,11 +19,11 @@
 
             if (range.IsInside(number))
             {
-                Console.WriteLine("Число {0} принадлежит диапазону", number);
+                Console.Write("Число {0} принадлежит диапазону: ", number);
             }
             else
             {
-                Console.WriteLine("Число {0} не принадлежит диапазону", number);
+                Console.Write("Число {0} не принадлежит диапазону: ", number);
             }
 
             range.Print();
@@ -62,7 +62,7 @@
 
             if (Difference == null)
             {
-                Console.WriteLine("Разности нет");
+                Console.WriteLine("Разность равна 0");
             }
             else
             {

@@ -22,99 +22,78 @@
             return number >= From && number <= To;
         }
 
-        public void Print()
+        public override string ToString()
         {
-            Console.WriteLine("({0};{1})", From, To);
+            return $"({From}; {To})";
         }
 
-        public Range GetIntersection(Range interval2)
+        public void PrintArray(Range[] array)
         {
-            double interval2From = interval2.From;
-            double interval2To = interval2.To;
+            Console.Write("[");
 
-            if (From <= interval2From && To >= interval2To)
+            for (int i = 0; i < array.Length; i++)
             {
-                return new Range(interval2From, interval2To);
+                Console.Write(array[i].ToString());
+
+                if (i != array.Length - 1)
+                {
+                    Console.Write(",");
+                }
             }
 
-            if (From > interval2From && To < interval2To)
-            {
-                return new Range(From, To);
-            }
-
-            if (From < interval2From && To < interval2To && To > interval2From)
-            {
-                return new Range(interval2From, To);
-            }
-
-            if (interval2From < From && interval2To < To && interval2To > From)
-            {
-                return new Range(From, interval2To);
-            }
-
-            return null;
+            Console.WriteLine("]");
         }
 
-        public Range[] GetUnion(Range interval2)
+        public Range? GetIntersection(Range range)
         {
-            double interval2From = interval2.From;
-            double interval2To = interval2.To;
-
-            if (From <= interval2From && To >= interval2To)
+            if (From == range.From && To == range.To)
             {
-                Range[] rangesArray = new Range[1];
-                rangesArray[0] = new Range(From, To);
-                return rangesArray;
+                return range;
             }
 
-            if (From > interval2From && To < interval2To)
+            if (To <= range.From || From >= range.To)
             {
-                Range[] rangesArray = new Range[1];
-                rangesArray[0] = new Range(interval2From, interval2To);
-                return rangesArray;
+                return null;
             }
 
-            if (From < interval2From && To < interval2To && To >= interval2From)
-            {
-                Range[] rangesArray = new Range[1];
-                rangesArray[0] = new Range(From, interval2To);
-                return rangesArray;
-            }
-
-            if (interval2From < From && interval2To < To && interval2To >= From)
-            {
-                Range[] rangesArray = new Range[1];
-                rangesArray[0] = new Range(interval2From, To);
-                return rangesArray;
-            }
-
-            Range[] rangesArray2 = new Range[2];
-            rangesArray2[0] = new Range(From, To);
-            rangesArray2[1] = new Range(interval2From, interval2To);
-            return rangesArray2;
+            return new Range(Math.Max(From, range.From), Math.Min(To, range.To));
         }
 
-        public Range[] GetDifference(Range interval2)
+        public Range[] GetUnion(Range range)
         {
-            double interval2From = interval2.From;
-            double interval2To = interval2.To;
-
-            if (From < interval2From && To < interval2To && To > interval2From)
+            if (From == range.From && To == range.To)
             {
-                Range[] rangesArray = new Range[1];
-                rangesArray[0] = new Range(From, interval2From);
-                return rangesArray;
+                return new Range[] { range };
             }
 
-            if (From < interval2From && To > interval2To)
+            if (To < range.From || From > range.To)
             {
-                Range[] rangesArray = new Range[2];
-                rangesArray[0] = new Range(From, interval2From);
-                rangesArray[1] = new Range(interval2To, To);
-                return rangesArray;
+                return new Range[] { new Range(From, To), range };
             }
 
-            return null;
+            return new Range[] { new Range(Math.Min(From, range.From), Math.Max(To, range.To)) };
+        }
+
+        public Range[] GetDifference(Range range)
+        {
+            if ((From == range.From && To == range.To) || (To <= range.From || From >= range.To) || (From > range.From && To < range.To))
+            {
+                return new Range[] { };
+            }
+
+            if (From < range.From && To > range.To)
+            {
+                return new Range[] { new Range(From, range.From), new Range(range.To, To) };
+            }
+
+            if (From < range.From)
+            {
+                return new Range[] { new Range(From, range.From) };
+            }
+            else
+            {
+                return new Range[] { new Range(range.To, To) };
+            }
         }
     }
 }

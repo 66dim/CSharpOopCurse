@@ -4,76 +4,53 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите число - начало диапазона: ");
-            double from = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите число - начало первого диапазона:");
+            double from1 = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine("Введите число - конец диапазона: ");
-            double to = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите число - конец первого диапазона:");
+            double to1 = Convert.ToDouble(Console.ReadLine());
 
-            Range range = new Range(from, to);
+            Range range1 = new Range(from1, to1);
 
-            Console.WriteLine("Длина диапазона равна: {0}", range.GetLength());
+            Console.WriteLine("Длина диапазона равна:{0}", range1.GetLength());
 
             Console.WriteLine("Введите число для проверки принадлежности диапазону:");
             double number = Convert.ToDouble(Console.ReadLine());
 
-            if (range.IsInside(number))
+            if (range1.IsInside(number))
             {
-                Console.Write("Число {0} принадлежит диапазону: ", number);
+                Console.WriteLine("Число {0} принадлежит диапазону:{1} ", number, range1.ToString());
             }
             else
             {
-                Console.Write("Число {0} не принадлежит диапазону: ", number);
+                Console.WriteLine("Число {0} не принадлежит диапазону:{1} ", number, range1.ToString());
             }
 
-            range.Print();
+            Console.WriteLine("Введите число - начало второго диапазона:");
+            double from2 = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine("Введите число - начало второго диапазона: ");
-            double interval2From = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите число - конец второго диапазона:");
+            double to2 = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine("Введите число - конец второго диапазона: ");
-            double Interval2To = Convert.ToDouble(Console.ReadLine());
+            Range range2 = new Range(from2, to2);
 
-            Range interval2 = new Range(interval2From, Interval2To);
+            Range? intersection = range1.GetIntersection(range2);
 
-            Range Intersection = range.GetIntersection(interval2);
-
-            if (Intersection == null)
+            if (intersection == null)
             {
                 Console.WriteLine("Пересечения нет");
             }
             else
             {
                 Console.WriteLine("Пересечение диапазонов:");
-                Intersection.Print();
+                Console.WriteLine(intersection.ToString());
             }
-
-            Range[] Union = range.GetUnion(interval2);
 
             Console.WriteLine("Объединение диапазонов:");
+            range1.PrintArray(range1.GetUnion(range2));
 
-            for (int i = 0; i < Union.Length; i++)
-            {
-                Range temp = Union[i];
-                temp.Print();
-            }
-
-            Range[] Difference = range.GetDifference(interval2);
-
-            if (Difference == null)
-            {
-                Console.WriteLine("Разность равна 0");
-            }
-            else
-            {
-                Console.WriteLine("Разность диапазонов:");
-
-                for (int i = 0; i < Difference.Length; i++)
-                {
-                    Range temp = Difference[i];
-                    temp.Print();
-                }
-            }
+            Console.WriteLine("Разность диапазонов:");
+            range1.PrintArray(range1.GetDifference(range2));
         }
     }
 }

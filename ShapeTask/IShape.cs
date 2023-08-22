@@ -8,19 +8,29 @@ namespace ShapeTask
 {
     public class IShape
     {
-        public double Side1 { get; set; }
-
-        public double Side2 { get; set; }
-
         public IShape()
         {
-            //Side1 = side1;
-            //Side2 = side2;
+            
         }
 
-        public double GetArea()
+        public virtual double GetWidth()
         {
-        return 0;
+            return 0;
+        }
+
+        public virtual double GetHeight()
+        {
+            return 0;
+        }
+        
+        public virtual double GetArea()
+        {
+            return 0;
+        }
+
+        public virtual double GetPerimeter()
+        {
+            return 0;
         }
     }
 }

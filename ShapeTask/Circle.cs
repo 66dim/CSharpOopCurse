@@ -1,19 +1,17 @@
 ﻿namespace ShapeTask
 {
-    public class Square : IShape
+    public class Circle : IShape
     {
-        public double Side { get; set; }
+        public double Radius { get; set; }
 
-        private const int sidesNumber = 4;
-
-        public Square(double side) : base()
+        public Circle(double radius) : base()
         {
-            Side = side;
+            Radius = radius;
         }
 
         public override string ToString()
         {
-            return $"{"Квадрат:"} {"сторона:"}{Side:#.##} {"ширина:"}{GetWidth():#.##} {"высота:"}{GetHeight():#.##} {"площадь:":#.##}{GetArea()} {"периметр:"}{GetPerimeter():#.##}";
+            return $"{"Круг:"} {"радиус:"}{Radius:#.##} {"ширина:"}{GetWidth():#.##} {"высота:"}{GetHeight():#.##} {"площадь:"}{GetArea():#.##} {"периметр:"}{GetPerimeter():#.##}";
         }
 
         public override bool Equals(object? o)
@@ -28,36 +26,37 @@
                 return false;
             }
 
-            Square newSquare = (Square)o;
+            Circle newCircle = (Circle)o;
 
-            return Side == newSquare.Side;
+            return Radius == newCircle.Radius;
         }
 
         public override int GetHashCode()
         {
             int prime = 37;
             int hash = 1;
-            return (int)(prime * hash + Side);
+
+            return (int)(prime * hash + Radius);
         }
 
         public override double GetHeight()
         {
-            return Side;
+            return Radius * 2;
         }
 
         public override double GetWidth()
         {
-            return Side;
+            return Radius * 2;
         }
 
         public override double GetArea()
         {
-            return Side * Side;
+            return Math.PI * Radius * Radius;
         }
 
         public override double GetPerimeter()
         {
-            return Side * sidesNumber;
+            return Math.PI * Radius * 2;
         }
     }
 }

@@ -6,7 +6,7 @@
 
         private const int sidesNumber = 4;
 
-        public Square(double side) : base()
+        public Square(double side)
         {
             Side = side;
         }
@@ -38,25 +38,25 @@
             int prime = 37;
             int hash = 1;
 
-            return = (int)(prime * hash + Side);
+            return (int)(prime * hash + Side);
         }
 
-        public override double GetHeight()
+        public double GetHeight()
         {
             return Side;
         }
 
-        public override double GetWidth()
+        public double GetWidth()
         {
             return Side;
         }
 
-        public override double GetArea()
+        public double GetArea()
         {
             return Side * Side;
         }
 
-        public override double GetPerimeter()
+        public double GetPerimeter()
         {
             return Side * sidesNumber;
         }

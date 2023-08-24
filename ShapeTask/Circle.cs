@@ -4,7 +4,7 @@
     {
         public double Radius { get; set; }
 
-        public Circle(double radius) : base()
+        public Circle(double radius)
         {
             Radius = radius;
         }
@@ -39,22 +39,22 @@
             return hash = (int)(prime * hash + Radius);
         }
 
-        public override double GetHeight()
+        public double GetHeight()
         {
-            return Radius * 2;
+            return Radius + Radius;
         }
 
-        public override double GetWidth()
+        public double GetWidth()
         {
-            return Radius * 2;
+            return Radius + Radius;
         }
 
-        public override double GetArea()
+        public double GetArea()
         {
             return Math.PI * Radius * Radius;
         }
 
-        public override double GetPerimeter()
+        public double GetPerimeter()
         {
             return Math.PI * Radius * 2;
         }

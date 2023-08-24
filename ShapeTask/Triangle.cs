@@ -13,7 +13,7 @@
         private double side2;
         private double side3;
 
-        public Triangle(double x1, double y1, double x2, double y2, double x3, double y3) : base()
+        public Triangle(double x1, double y1, double x2, double y2, double x3, double y3)
         {
             X1 = x1;
             Y1 = y1;
@@ -63,23 +63,23 @@
             return hash;
         }
 
-        public override double GetHeight()
+        public double GetHeight()
         {
             return Math.Max(Y3, Math.Max(Y1, Y2)) - Math.Min(Y3, Math.Min(Y1, Y2));
         }
 
-        public override double GetWidth()
+        public double GetWidth()
         {
             return Math.Max(X3, Math.Max(X1, X2)) - Math.Min(X3, Math.Min(X1, X2));
         }
 
-        public override double GetArea()
+        public double GetArea()
         {
             double perimeterHalf = GetPerimeter() / 2;
             return Math.Sqrt(perimeterHalf * (perimeterHalf - side1) * (perimeterHalf - side2) * (perimeterHalf - side3));
         }
 
-        public override double GetPerimeter()
+        public double GetPerimeter()
         {
             return side1 + side2 + side3;
         }

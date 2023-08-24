@@ -5,7 +5,7 @@
         public double Width { get; set; }
         public double Height { get; set; }
 
-        public Rectangle(double width, double height) : base()
+        public Rectangle(double width, double height)
         {
             Width = width;
             Height = height;
@@ -44,22 +44,22 @@
             return hash;
         }
 
-        public override double GetHeight()
+        public double GetHeight()
         {
             return Height;
         }
 
-        public override double GetWidth()
+        public double GetWidth()
         {
             return Width;
         }
 
-        public override double GetArea()
+        public double GetArea()
         {
             return Width * Height;
         }
 
-        public override double GetPerimeter()
+        public double GetPerimeter()
         {
             return (Width + Height) * 2;
         }

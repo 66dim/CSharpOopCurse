@@ -35,7 +35,31 @@
             Console.WriteLine(shapesArray[7]);
             Console.WriteLine($"{"Хэш код:"}{shapesArray[7].GetHashCode()}");
 
+            Console.WriteLine();
+
             if (shapesArray[0].Equals(shapesArray[7]))
+            {
+                Console.WriteLine("Фигуры равны.");
+            }
+            else
+            {
+                Console.WriteLine("Фигуры не равны");
+            }
+
+            Console.WriteLine();
+
+            Console.WriteLine("Сравним ещё две фигуры:");
+            Console.WriteLine(shapesArray[4]);
+            Console.WriteLine($"{"Хэш код:"}{shapesArray[4].GetHashCode()}");
+
+            Console.WriteLine();
+
+            Console.WriteLine(shapesArray[4]);
+            Console.WriteLine($"{"Хэш код:"}{shapesArray[4].GetHashCode()}");
+
+            Console.WriteLine();
+
+            if (shapesArray[4].Equals(shapesArray[4]))
             {
                 Console.WriteLine("Фигуры равны.");
             }

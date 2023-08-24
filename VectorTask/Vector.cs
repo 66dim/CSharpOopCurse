@@ -180,10 +180,10 @@
 
             foreach (double item in vector)
             {
-                hash = prime * hash + item.GetHashCode();
+                hash = (int)(prime * hash + item.GetHashCode());
             }
 
-            return (int)hash;
+            return hash;
         }
 
         public static Vector GetSumVectors(Vector vector1, Vector vector2)

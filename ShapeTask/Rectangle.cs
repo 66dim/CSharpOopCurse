@@ -37,8 +37,11 @@
         {
             int prime = 37;
             int hash = 1;
+
             hash = (int)(prime * hash + Width);
-            return (int)(prime * hash + Height.GetHashCode());
+            hash = (int)(prime * hash + Height.GetHashCode());
+
+            return hash;
         }
 
         public override double GetHeight()

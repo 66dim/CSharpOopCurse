@@ -37,7 +37,8 @@
         {
             int prime = 37;
             int hash = 1;
-            return (int)(prime * hash + Side);
+
+            return = (int)(prime * hash + Side);
         }
 
         public override double GetHeight()

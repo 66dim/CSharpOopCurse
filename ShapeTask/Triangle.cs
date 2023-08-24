@@ -52,12 +52,15 @@
         {
             int prime = 37;
             int hash = 1;
+
             hash = (int)(prime * hash + X1);
             hash = (int)(prime * hash + Y1.GetHashCode());
             hash = (int)(prime * hash + X2.GetHashCode());
             hash = (int)(prime * hash + Y2.GetHashCode());
             hash = (int)(prime * hash + X3.GetHashCode());
-            return hash = (int)(prime * hash + Y3.GetHashCode());
+            hash = (int)(prime * hash + Y3.GetHashCode());
+
+            return hash;
         }
 
         public override double GetHeight()
